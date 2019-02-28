@@ -2,37 +2,53 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="font-weight-light">NeoProspecta</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-toolbar>
 
     <v-content>
-      <Home/>
+      <v-alert :type="type" class="dialogMessage" :value="isDialog" transition="fade">
+        {{message}}
+      </v-alert>
+      <router-view v-on:show-dialog="showDialog"></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Home from './views/Home'
-
 export default {
   name: 'App',
-  components: {
-    Home
-  },
   data () {
     return {
-      //
+      message: '',
+      type: 'success',
+      isDialog: false
+    }
+  },
+  methods: {
+    showDialog (params) {
+      if (params && params.message && params.type) {
+        this.type = params.type
+        this.message = params.message
+        this.isDialog = true
+        setTimeout(() => {
+          this.isDialog = false
+          this.message = ''
+        }, 4000)
+      }
     }
   }
 }
 </script>
+
+<style>
+.dialogMessage {
+    position: fixed;;
+    bottom: 5%;
+    right: 0;
+    height: 50px;
+    width: 50%;
+    min-width: 320px;
+    z-index: 1;
+}
+</style>
