@@ -11,7 +11,7 @@
             <v-text-field v-model="editedItem.name" label="Nome"></v-text-field>
             </v-flex>
             <v-flex xs12>
-            <v-text-field v-model="editedItem.age" label="Edade" type="number" pattern="\d*" maxlength="3"></v-text-field>
+            <v-text-field v-model="editedItem.age" label="Edade" type="number" step="1" @change="validateNumber"></v-text-field>
             </v-flex>
             <v-flex xs12>
             <v-text-field v-model="editedItem.city" label="Cidade"></v-text-field>
@@ -49,6 +49,14 @@ export default {
     },
     cancelar () {
       this.$router.push({ name: 'home' })
+    },
+    validateNumber () {
+      console.log(this.editedItem.age )
+      this.editedItem.age = Math.round(this.editedItem.age)
+      if (this.editedItem.age < 0 || this.editedItem.age > 999) {
+        this.$emit('show-dialog', { type: 'warning', message: 'números só podem ser positivos de tres dígitos' })
+        this.editedItem.age = 0
+      }
     }
   }
 }
