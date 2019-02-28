@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Cliente:
+      <h2>Clientes</h2>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

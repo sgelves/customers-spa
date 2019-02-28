@@ -51,10 +51,8 @@ export default {
       this.$router.push({ name: 'home' })
     },
     validateNumber () {
-      console.log(this.editedItem.age )
       this.editedItem.age = Math.round(this.editedItem.age)
       if (this.editedItem.age < 0 || this.editedItem.age > 999) {
-        this.$emit('show-dialog', { type: 'warning', message: 'números só podem ser positivos de tres dígitos' })
         this.editedItem.age = 0
       }
     }
