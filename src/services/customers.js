@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   getCustomers: async function () {
-    var result = await axios.get('http://private-92a969-processoseletivo1.apiary-mock.com/customers')
+    var result = await axios.get('https://private-92a969-processoseletivo1.apiary-mock.com/customers')
     return result.data
   },
 
