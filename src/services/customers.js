@@ -12,6 +12,6 @@ export default {
       `https://private-92a969-processoseletivo1.apiary-mock.com/customers/${customerId}`,
       customerData
     )
-    return result.data
+    return { status: result.status, data: result.data }
   }
 }

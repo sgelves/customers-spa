@@ -11,7 +11,7 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :items="customers" :headers="headers" :search="search"
+    <v-data-table :items="customers" :headers="headers" :search="search" :rows-per-page-items="[10, 15, { text: 'Todo', value: -1 }]"
       rows-per-page-text="Clientes por página:">
       <template slot="items" slot-scope="props">
         <td>{{ props.item.identificador }}</td>
@@ -19,21 +19,16 @@
         <td>{{ props.item.age }}</td>
         <td>{{ props.item.city }}</td>
         <td>
-          <router-link :to="{ name:'customer', params: { id: props.item.identificador } }" >
-            <v-icon small>edit</v-icon>
-          </router-link>
+          <v-icon small @click="editCustomer(props.item)">edit</v-icon>
         </td>
 
       </template>
     </v-data-table>
-    <CreateCustomer>
-    </CreateCustomer>
   </v-card>
 </template>
 
 <script>
 import services from '@/services/customers'
-import CreateCustomer from '@/components/CreateCustomer'
 
 export default {
   data () {
@@ -88,12 +83,9 @@ export default {
       }
     },
     editCustomer: function (customer) {
-      console.log('customer: ', customer.identificador)
-      this.$router.push({ name: 'customer', params: { id: customer.identificador } })
+      delete customer.id
+      this.$router.push({ name: 'customer', params: { ...customer, id: customer.identificador } })
     }
-  },
-  components: {
-    CreateCustomer
   }
 }
 </script>
@@ -144,5 +136,6 @@ only screen and (max-width: 767px){
   td:nth-of-type(2):before { content: "Nome"; }
   td:nth-of-type(3):before { content: "Edade"; }
   td:nth-of-type(4):before { content: "Cidade"; }
+  td:nth-of-type(5):before { content: "Editar"; }
 }
 </style>
