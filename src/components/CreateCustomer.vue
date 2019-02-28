@@ -11,7 +11,7 @@
             <v-text-field v-model="editedItem.name" label="Nome"></v-text-field>
             </v-flex>
             <v-flex xs12>
-            <v-text-field v-model="editedItem.age" label="Edade"></v-text-field>
+            <v-text-field v-model="editedItem.age" label="Edade" type="number" pattern="\d*" maxlength="3"></v-text-field>
             </v-flex>
             <v-flex xs12>
             <v-text-field v-model="editedItem.city" label="Cidade"></v-text-field>
@@ -43,7 +43,7 @@ export default {
     async editCustomer (id) {
       var response = await services.modifyCustomer(id, {})
       if (response && response.status === 200 && response.data && response.data.status === 'Updated sucessfully!') {
-        this.$emit('show-dialog', { type: 'success', message: `${this.editedItem.name} foi editado exitosamente` })
+        this.$emit('show-dialog', { type: 'success', message: `Cliente ${this.editedItem.name} atualizado com sucesso!` })
         this.$router.push({ name: 'home' })
       }
     },

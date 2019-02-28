@@ -34,7 +34,7 @@ export default {
         setTimeout(() => {
           this.isDialog = false
           this.message = ''
-        }, 2000)
+        }, 4000)
       }
     }
   }
@@ -43,10 +43,10 @@ export default {
 
 <style>
 .dialogMessage {
-    position: absolute;
+    position: fixed;;
     bottom: 5%;
     right: 0;
-    height: 40px;
+    height: 50px;
     width: 50%;
     min-width: 320px;
     z-index: 1;

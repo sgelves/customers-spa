@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Cliente
+      Cliente:
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -19,7 +19,7 @@
         <td>{{ props.item.age }}</td>
         <td>{{ props.item.city }}</td>
         <td>
-          <v-icon small @click="editCustomer(props.item)">edit</v-icon>
+          <v-icon @click="editCustomer(props.item)">edit</v-icon>
         </td>
 
       </template>
@@ -106,23 +106,26 @@ only screen and (max-width: 767px){
     left: -9999px;
   }
 
-  tr { border: 1px solid #ccc;}
+  tr {
+    border: 1px solid #ccc;
+    margin: 5% 10% 5% 10%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+  }
 
   td {
     /* Behave  like a "row" */
     border: none;
     top: 6px;
-    border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50% !important;
-    height: 30px !important;
   }
 
   td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
-    top: 6px;
     left: 6px;
     width: 45%;
     padding-right: 10px;
