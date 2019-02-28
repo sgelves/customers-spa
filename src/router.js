@@ -9,12 +9,12 @@ let router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/customers-spa/',
       name: 'home',
       component: Home
     },
     {
-      path: '/customer/:id',
+      path: '/customers-spa/customer/:id',
       name: 'customer',
       component: CreateCustomer
     },
